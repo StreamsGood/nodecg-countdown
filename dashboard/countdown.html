@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="../node_modules/moment/moment.js"></script>
+	<script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+
+	<link rel="import" href="../bower_components/polymer/lib/elements/dom-bind.html">
+
+	<link rel="import" href="../bower_components/vaadin-material-theme/vaadin-button.html">
+	<link rel="import" href="../bower_components/vaadin-button/vaadin-button.html">
+
+	<link rel="import" href="../bower_components/vaadin-material-theme/vaadin-text-field.html">
+	<link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
+
+	<style>
+		body {
+			margin-top: -5px;
+		}
+
+		.layout {
+			display: flex;
+			justify-content: center;
+		}
+
+		.horizontal {
+			flex-direction: row;
+		}
+
+		#timestamp {
+			font-size: var(--material-display1-font-size);
+		}
+
+		#start {
+			background-color: #5BA664;
+			color: white;
+			display: flex;
+		}
+
+		#stop {
+			background-color: #C9513E;
+			color: white;
+			display: flex;
+		}
+
+		#reset {
+			background-color: rgb(62, 145, 201);
+			color: white;
+			display: flex;
+		}
+
+		vaadin-button {
+			margin: 4px 1px;
+		}
+
+		vaadin-button[disabled] {
+			background-color: rgb(110, 110, 110) !important;
+		}
+	</style>
+</head>
+<body>
+	<dom-bind id="dom-bind">
+		<template>
+			<div class="layout horizontal">
+				<vaadin-text-field id="timestamp" value="{{countdown}}" disabled="{{running}}" no-label-float></vaadin-text-field>
+			</div>
+
+			<div class="layout horizontal">
+				<vaadin-button id="start" on-click="_start" theme="raised" disabled="{{running}}">Start</vaadin-button>
+				<vaadin-button id="stop" on-click="_stop" theme="raised" disabled="{{!running}}">Stop</vaadin-button>
+				<vaadin-button id="reset" on-click="_reset" theme="raised">Reset</vaadin-button>
+			</div>
+		</template>
+	</dom-bind>
+
+	<script>
+	(function () {
+		const runningReplicant = nodecg.Replicant('running');
+		const countdownReplicant = nodecg.Replicant('countdown');
+
+		window.addEventListener('WebComponentsReady', () => {
+			const domBind = document.querySelector('#dom-bind');
+
+			runningReplicant.on('change', newValue => {
+				domBind.running = newValue;
+			});
+
+			countdownReplicant.on('change', newValue => {
+				domBind.countdown = newValue;
+			});
+
+			domBind._start = () => {
+				nodecg.sendMessage('setAndStart', domBind.countdown);
+			};
+
+			domBind._stop = () => {
+				runningReplicant.value = false;
+			};
+
+			domBind._reset = () => {
+				runningReplicant.value = false;
+				nodecg.sendMessage('set', '00:50:00');
+			};
+		});
+	})();
+	</script>
+</body>
+</html>

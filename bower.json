@@ -1,0 +1,24 @@
+{
+  "name": "nodecg-countdown",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Brendan Hagan (haganbmj)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/nodecg/nodecg",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vaadin-material-theme": "vaadin/vaadin-material-theme#^0.3.0",
+    "vaadin-button": "vaadin/vaadin-button#^1.0.5",
+    "vaadin-text-field": "^1.1.0",
+    "webcomponentsjs": "^1.1.0",
+    "polymer": "^2.5.0"
+  }
+}
