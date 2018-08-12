@@ -9,14 +9,13 @@
   "author": "Brendan Hagan (haganbmj)",
   "license": "MIT",
   "nodecg": {
-    "compatibleRange": ">=0.9",
+    "compatibleRange": ">=1.1.0",
     "dashboardPanels": [
       {
         "name": "countdown",
         "title": "Round Timer",
         "width": 2,
-        "file": "countdown.html",
-        "headerColor": "#9f9bbd"
+        "file": "countdown.html"
       }
     ]
   },

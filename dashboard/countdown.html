@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
+	<link rel="import" href="/dashboard/css/nodecg-theme.html">
+
 	<link rel="import" href="../bower_components/polymer/lib/elements/dom-bind.html">
 
 	<link rel="import" href="../bower_components/vaadin-material-theme/vaadin-button.html">
@@ -12,50 +14,64 @@
 	<link rel="import" href="../bower_components/vaadin-material-theme/vaadin-text-field.html">
 	<link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
 
-	<style>
-		body {
-			margin-top: -5px;
-		}
+	<custom-style>
+		<style include="nodecg-theme">
+			vaadin-text-field {
+				/* color: white !important; */
 
-		.layout {
-			display: flex;
-			justify-content: center;
-		}
+				--material-body-text-color: white;
+				--material-secondary-text-color: white;
+				--material-disabled-text-color: white;
+			}
 
-		.horizontal {
-			flex-direction: row;
-		}
+			body {
+				margin-top: -5px;
+			}
 
-		#timestamp {
-			font-size: var(--material-display1-font-size);
-		}
+			.layout {
+				display: flex;
+				justify-content: center;
+			}
 
-		#start {
-			background-color: #5BA664;
-			color: white;
-			display: flex;
-		}
+			.horizontal {
+				flex-direction: row;
+			}
 
-		#stop {
-			background-color: #C9513E;
-			color: white;
-			display: flex;
-		}
+			#timestamp {
+				font-size: var(--material-display1-font-size);
+			}
 
-		#reset {
-			background-color: rgb(62, 145, 201);
-			color: white;
-			display: flex;
-		}
+			#start {
+				/* background-color: #5BA664; */
+				background-color: var(--nodecg-accept-color);
+				color: white;
+				display: flex;
+			}
 
-		vaadin-button {
-			margin: 4px 1px;
-		}
+			#stop {
+				/* background-color: #C9513E; */
+				background-color: var(--nodecg-reject-color);
+				color: white;
+				display: flex;
+			}
 
-		vaadin-button[disabled] {
-			background-color: rgb(110, 110, 110) !important;
-		}
-	</style>
+			#reset {
+				/* background-color: rgb(62, 145, 201); */
+				background-color: var(--nodecg-configure-color);
+				color: white;
+				display: flex;
+			}
+
+			vaadin-button {
+				margin: 4px 1px;
+			}
+
+			vaadin-button[disabled] {
+				/* background-color: rgb(110, 110, 110) !important; */
+				background-color: var(--nodecg-disabled-color) !important;
+			}
+		</style>
+	</custom-style>
 </head>
 <body>
 	<dom-bind id="dom-bind">
